@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF--8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3csvg viewBox='-2 -2 128 60' xmlns='http://www.w3.org/2000/svg'%3e%3cstyle%3e.details{stroke:%23111827;fill:%23111827}@media(prefers-color-scheme:dark){.details{stroke:%23f9fafb;fill:%23f9fafb}}%3c/style%3e%3cpath d='M0 56V0H28C43.464 0 56 12.536 56 28V28C56 43.464 43.464 56 28 56H0Z' fill='%23FFCC01'/%3e%3cpath d='M68 56V0H96C111.464 0 124 12.536 124 28V28C124 43.464 111.464 56 96 56H68Z' fill='%23FFCC01'/%3e%3cpath class='details' d='M28.5 15L21 28.5H30L22.5 42' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3e%3ccircle class='details' cx='91' cy='28' r='4'/%3e%3ccircle class='details' cx='107' cy='28' r='4'/%3e%3c/svg%3e" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlugPlayers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              primary: {
+                '50': '#fffde7',
+                '100': '#fffac0',
+                '200': '#fff176',
+                '300': '#ffe54c',
+                '400': '#ffda22',
+                '500': '#FFCC01', // Base Yellow
+                '600': '#e6b800',
+                '700': '#b48f00',
+                '800': '#8c7000',
+                '900': '#6b5500',
+                '950': '#453800',
+              },
+            }
+          }
+        }
+      }
+    </script>
+  <style>
+      /* Light theme as default */
+      body {
+        background-color: #f9fafb; /* bg-gray-50 */
+        color: #111827; /* text-gray-900 */
+      }
+
+      /* Dark theme styles */
+      .dark body {
+        background-color: #030303; /* A very dark gray, not pure black */
+        color: #f9fafb; /* text-gray-50 */
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Add the glowing background effect for dark mode */
+      .dark body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle at 10% 20%, rgba(255, 204, 1, 0.08) 0%, transparent 40%),
+                          radial-gradient(circle at 80% 70%, rgba(255, 204, 1, 0.06) 0%, transparent 50%);
+        background-repeat: no-repeat;
+        z-index: -1;
+        pointer-events: none;
+      }
+      
+      /* Fix for browser autofill background color */
+      /* Light Mode */
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+          -webkit-text-fill-color: #111827 !important; 
+          -webkit-box-shadow: 0 0 0px 1000px #f9fafb inset !important;
+          transition: background-color 5000s ease-in-out 0s !important;
+      }
+      /* Dark Mode */
+      .dark input:-webkit-autofill,
+      .dark input:-webkit-autofill:hover,
+      .dark input:-webkit-autofill:focus,
+      .dark input:-webkit-autofill:active {
+          -webkit-text-fill-color: #f3f4f6 !important;
+          -webkit-box-shadow: 0 0 0px 1000px #111827 inset !important;
+          transition: background-color 5000s ease-in-out 0s !important;
+      }
+
+      /* Animations for Landing Page */
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      @keyframes scale-x {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+       @keyframes slow-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .animate-slow-spin {
+        animation: slow-spin 30s linear infinite;
+        transform-origin: center;
+      }
+      .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+      .marquee-content {
+        animation: marquee 40s linear infinite;
+      }
+      .line-on-scroll {
+        transform-origin: left;
+        transform: scaleX(0);
+        transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      .is-visible .line-on-scroll {
+        transform: scaleX(1);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
+    "react/": "https://esm.sh/react@^19.1.1/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.8.2",
+    "@google/genai": "https://esm.sh/@google/genai",
+    "jspdf": "https://esm.sh/jspdf@2.5.1",
+    "next/": "https://aistudiocdn.com/next@^15.5.0/",
+    "tailwindcss": "https://aistudiocdn.com/tailwindcss@^4.1.12"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+
+:root { --bg: #0b0b0c; --fg: #ebebef; }
+html, body { background: var(--bg); color: var(--fg); }
+a { text-decoration: underline; }
+input, button { color: #111; }
