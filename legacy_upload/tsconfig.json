@@ -18,5 +18,5 @@
     "plugins": [{ "name": "next" }]
   },
   "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "legacy_upload", "**/*.test.*"]
+  "exclude": ["node_modules", "legacy_upload", "**/legacy_upload/**"]
 }
